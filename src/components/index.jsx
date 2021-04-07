@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, Fragment } from 'react';
 import axios from 'axios';
 import Images from './images';
 
@@ -12,9 +12,9 @@ const Index = () => {
     const result = await axios.get(
       `https://api.unsplash.com/search/photos?client_id=LlMkaG7ZmU8Gzgu7FBurlpkY6aHQ1SMsHw8iG_iTI8M&query=${value}&per_page=10`
     );
+    setValue('');
 
     setImgs(result.data.results);
-    setValue('');
     console.log(result.data);
   };
 
@@ -31,10 +31,15 @@ const Index = () => {
             style={{ width: '50%' }}
           />
         </div>
-        <button className='btn btn-success'>Search</button>
+        <button
+          disabled={value.trim().length === 0}
+          className='btn btn-success'
+        >
+          Search
+        </button>
       </form>
       <hr />
-      <Images images={imgs} />
+      {imgs.length !== 0 && <Images images={imgs} />}
     </Fragment>
   );
 };
