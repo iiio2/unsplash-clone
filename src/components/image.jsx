@@ -53,6 +53,11 @@ const Image = () => {
             {image.location.position.longitude}{' '}
           </li>
         </ul>
+        <p>Tags</p>
+        {image.tags.length === 0 && <p>No tags.</p>}
+        {image.tags.map((img, index) => (
+          <span key={index}>{img.title}</span>
+        ))}
       </div>
     </div>
   );
