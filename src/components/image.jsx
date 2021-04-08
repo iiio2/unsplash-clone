@@ -29,7 +29,7 @@ const Image = () => {
 
   return (
     <div className='row'>
-      <div className='col-sm-7'>
+      <div className='col-sm-6'>
         <img
           src={image.urls.full}
           alt={image.alt_description}
@@ -37,7 +37,7 @@ const Image = () => {
         />
       </div>
 
-      <div className='col-sm-5'>
+      <div className='col-sm-6'>
         <h5>
           {image.description ? image.description : 'No Description Available'}
         </h5>
@@ -56,7 +56,7 @@ const Image = () => {
         <p>Tags</p>
         {image.tags.length === 0 && <p>No tags.</p>}
         {image.tags.map((img, index) => (
-          <span key={index}>{img.title}</span>
+          <span key={index}>{img.title},</span>
         ))}
       </div>
     </div>
