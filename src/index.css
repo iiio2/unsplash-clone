@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,14 +7,41 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #2f3640 !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+li,
+a,
+span {
+  font-family: 'Kiwi Maru', serif;
+  color: #f5f6fa !important;
 }
 
-/* .col-sm-7 img {
-  height: 400px !important;
-  width: 80% !important;
-} */
+form input {
+  display: block;
+  margin: 0 auto;
+  padding: 1.4rem 0 1.5rem 1rem !important;
+  border-radius: 30px !important;
+  font-size: 1.4rem !important;
+}
+form input::placeholder {
+  font-size: 1.4rem !important ;
+  font-family: 'Kiwi Maru', serif;
+}
+
+form .btn-success {
+  display: block;
+  margin: 0 auto;
+  border-radius: 30px;
+  font-size: 1.2rem;
+}
+
+.images img {
+  width: 100%;
+}

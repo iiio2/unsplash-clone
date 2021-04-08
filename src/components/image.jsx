@@ -13,8 +13,6 @@ const Image = () => {
         `https://api.unsplash.com/photos/${id}?client_id=LlMkaG7ZmU8Gzgu7FBurlpkY6aHQ1SMsHw8iG_iTI8M`
       );
       setImage(result.data);
-
-      console.log(result.data);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +26,7 @@ const Image = () => {
   if (!image.blur_hash) return <p>Loading...</p>;
 
   return (
-    <div className='row'>
+    <div className='row mb-4'>
       <div className='col-sm-6'>
         <img
           src={image.urls.full}
@@ -55,7 +53,7 @@ const Image = () => {
         </ul>
         <p>Tags</p>
         {image.tags.length === 0 && <p>No tags.</p>}
-        {image.tags.map((img, index) => (
+        {image.tags.slice(0, 6).map((img, index) => (
           <span key={index}>{img.title},</span>
         ))}
       </div>

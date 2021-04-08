@@ -15,7 +15,7 @@ const Index = () => {
             placeholder='Search'
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            style={{ width: '50%' }}
+            style={{ width: '70%' }}
           />
         </div>
         <button

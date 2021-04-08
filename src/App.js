@@ -4,11 +4,11 @@ import Image from './components/image';
 
 const App = () => {
   return (
-    <div className='container py-5'>
-      <h3>Unsplash Clone</h3>
+    <div className='container pt-2'>
+      <h1 className='text-center mb-4'>Unsplash Clone</h1>
       <BrowserRouter>
         <Switch>
-          <Route path='/image/:id' component={Image} />
+          <Route exact path='/image/:id' component={Image} />
           <Route exact path='/' component={Index} />
         </Switch>
       </BrowserRouter>

@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 
 const Images = ({ images }) => {
-  console.log(images);
-
   return (
     <div className='images'>
       {images.length === 0 && <p>Sorry</p>}

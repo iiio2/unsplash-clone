@@ -11,12 +11,11 @@ const ImageContextProvider = ({ children }) => {
     e.preventDefault();
     // for searching by button useEffect no necessary.
     const result = await axios.get(
-      `https://api.unsplash.com/search/photos?client_id=LlMkaG7ZmU8Gzgu7FBurlpkY6aHQ1SMsHw8iG_iTI8M&query=${value}&per_page=10`
+      `https://api.unsplash.com/search/photos?client_id=LlMkaG7ZmU8Gzgu7FBurlpkY6aHQ1SMsHw8iG_iTI8M&query=${value}&per_page=20`
     );
     setValue('');
 
     setImgs(result.data.results);
-    console.log(result.data);
     if (result.data.total === 0) {
       alert('Nothing found.');
     }
