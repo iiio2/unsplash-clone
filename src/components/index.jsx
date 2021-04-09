@@ -10,6 +10,7 @@ const Index = () => {
       <form onSubmit={fetchImages}>
         <div className='form-group'>
           <input
+            autoFocus
             type='text'
             className='form-control'
             placeholder='Search'
@@ -20,7 +21,7 @@ const Index = () => {
         </div>
         <button
           disabled={value.trim().length === 0}
-          className='btn btn-success'
+          className='btn btn-success btn-lg'
         >
           Search
         </button>

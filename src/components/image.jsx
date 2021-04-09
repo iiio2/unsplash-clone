@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Image = () => {
@@ -9,10 +9,11 @@ const Image = () => {
 
   const fetchImg = async () => {
     try {
-      const result = await axios(
+      const result = await axios.get(
         `https://api.unsplash.com/photos/${id}?client_id=LlMkaG7ZmU8Gzgu7FBurlpkY6aHQ1SMsHw8iG_iTI8M`
       );
       setImage(result.data);
+      console.log(result.data);
     } catch (error) {
       console.log(error);
     }
@@ -20,13 +21,13 @@ const Image = () => {
 
   useEffect(() => {
     fetchImg();
-    // eslint-disable-next-line
+    setImage('');
   }, []);
 
-  if (!image.blur_hash) return <p>Loading...</p>;
+  if (!image) return <p>Loading...</p>;
 
   return (
-    <div className='row mb-4'>
+    <div className='row mb-4 image'>
       <div className='col-sm-6'>
         <img
           src={image.urls.full}
@@ -36,9 +37,9 @@ const Image = () => {
       </div>
 
       <div className='col-sm-6'>
-        <h5>
+        <h4>
           {image.description ? image.description : 'No Description Available'}
-        </h5>
+        </h4>
         <p>Downloads: {image.downloads} </p>
         <p>Views: {image.views} </p>
         <p>Created at: {image.created_at} </p>
@@ -54,8 +55,24 @@ const Image = () => {
         <p>Tags</p>
         {image.tags.length === 0 && <p>No tags.</p>}
         {image.tags.slice(0, 6).map((img, index) => (
-          <span key={index}>{img.title},</span>
+          <span key={index}>{img.title}</span>
         ))}
+
+        <h4>Related Collections</h4>
+        <div className='row collections'>
+          {image.related_collections.results.map((img) => (
+            <div className='col-sm-3' key={img.id}>
+              <Link to={`/collection/image/${img.id}`}>
+                <img
+                  src={img.cover_photo.urls.thumb}
+                  className='img-fluid'
+                  width='100%'
+                  alt=''
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

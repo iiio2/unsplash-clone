@@ -23,6 +23,24 @@ span {
   color: #f5f6fa !important;
 }
 
+img {
+  width: 100%;
+}
+
+.app-title {
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.container .title {
+  color: #f5f6fa !important;
+}
+
+.container h1 {
+  color: #f5f6fa !important;
+  display: inline !important;
+}
+
 form input {
   display: block;
   margin: 0 auto;
@@ -39,9 +57,16 @@ form .btn-success {
   display: block;
   margin: 0 auto;
   border-radius: 30px;
-  font-size: 1.2rem;
 }
 
-.images img {
-  width: 100%;
+.collections img {
+  height: 150px !important;
+}
+
+.image span::after {
+  content: ', ';
+}
+
+.image span:last-of-type::after {
+  content: '';
 }
