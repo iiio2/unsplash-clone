@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react/cjs/react.development';
 import { ImageContext } from '../context/imageContext';
 
-const CollectionImage = (props) => {
+const CollectionImage = () => {
   const { images, setImages, fetchImgCollection } = useContext(ImageContext);
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { useContext, Fragment } from 'react';
 import Images from './images';
 import { ImageContext } from '../context/imageContext';
+import Pagination from '../common/Pagination';
 
 const Index = () => {
   const { imgs, value, setValue, fetchImages } = useContext(ImageContext);
@@ -25,8 +26,10 @@ const Index = () => {
           Search
         </button>
       </form>
+
       <hr />
       {!!imgs.length && <Images images={imgs} />}
+      {!!imgs.length && <Pagination />}
     </Fragment>
   );
 };

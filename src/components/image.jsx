@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ImageContext } from '../context/imageContext';
+import { API } from '../config/api';
 import axios from 'axios';
 
 const Image = () => {
@@ -13,7 +14,7 @@ const Image = () => {
   const fetchImg = async () => {
     try {
       const result = await axios.get(
-        `https://api.unsplash.com/photos/${id}?client_id=LlMkaG7ZmU8Gzgu7FBurlpkY6aHQ1SMsHw8iG_iTI8M`
+        `https://api.unsplash.com/photos/${id}?client_id=${API}`
       );
       setImage(result.data);
       console.log(result.data);

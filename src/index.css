@@ -72,3 +72,7 @@ form .btn-success {
 .image span:last-of-type::after {
   content: '';
 }
+
+.pagination a {
+  color: #333 !important;
+}
