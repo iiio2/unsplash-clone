@@ -4,11 +4,13 @@ import _ from 'lodash';
 import { ImageContext } from '../context/imageContext';
 
 const Pagination = () => {
-  const { getCurrentPage, totalPage, currentPage } = useContext(ImageContext);
+  const { getCurrentPage, currentPage, imgs, perPage } = useContext(
+    ImageContext
+  );
 
-  const tp = Math.ceil(20 / 4);
+  const totalPages = Math.ceil(imgs.length / perPage);
 
-  const pages = _.range(1, tp + 1);
+  const pages = _.range(1, totalPages + 1);
   if (pages.length === 1) {
     return null;
   }
@@ -16,9 +18,9 @@ const Pagination = () => {
   return (
     <nav aria-label='navigation'>
       <ul className='pagination'>
-        {pages.slice(0, 9).map((page, index) => (
+        {pages.map((page, index) => (
           <li
-            className={page == currentPage ? 'page-item active' : 'page-item'}
+            className={page === currentPage ? 'page-item active' : 'page-item'}
             key={index}
             onClick={() => getCurrentPage(page)}
           >

@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import paginate from '../utils/paginate';
 
 const Images = ({ images }) => {
-  const { currentPage } = useContext(ImageContext);
+  const { currentPage, perPage } = useContext(ImageContext);
 
-  const paginatedMovies = paginate(images, currentPage, 4);
+  const paginatedMovies = paginate(images, currentPage, perPage);
   console.log(paginatedMovies);
 
   return (
@@ -17,7 +17,7 @@ const Images = ({ images }) => {
         {paginatedMovies.map((img) => (
           <div className='col-sm-3 mb-1' key={img.id}>
             <Link to={`/image/${img.id}`}>
-              <img src={img.urls.thumb} className='img-fluid' alt='img' />
+              <img src={img.urls.thumb} className='img-fluid' alt='' />
               <h6>{img.alt_description}</h6>
               <i className='bi bi-heart-fill'>{img.likes}</i>
             </Link>

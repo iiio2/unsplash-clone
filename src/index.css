@@ -29,7 +29,7 @@ img {
 
 .app-title {
   text-align: center;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
 }
 
 .container .title {
@@ -59,6 +59,10 @@ form .btn-success {
   border-radius: 30px;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
+}
+
+.images img {
+  height: 300px !important;
 }
 
 .collections img {

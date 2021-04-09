@@ -9,24 +9,32 @@ const ImageContextProvider = ({ children }) => {
   const [id, setId] = useState('');
   const [images, setImages] = useState('');
   const [currentPage, setCurrentPage] = useState('');
-  const [totalPage, setTotalPage] = useState('');
-  const [total, setTotal] = useState('');
+  const [perPage] = useState(6);
+  const [total, setTotal] = useState(30);
 
   const fetchImages = async (e) => {
     e.preventDefault();
     // for searching by button useEffect no necessary.
 
     try {
+      if (value.trim().length === 0) {
+        alert('Please type something.');
+        return;
+      }
       const result = await axios(
-        `https://api.unsplash.com/search/photos?client_id=${API}&query=${value}&per_page=20`
+        `https://api.unsplash.com/search/photos?client_id=${API}&query=${value}&per_page=${total}`
       );
 
       setValue('');
       setImgs(result.data.results);
+      console.log(result.data.results);
       console.log(result.data);
-      //setTotal(result.data.total);
-      setTotalPage(result.data.total_pages);
-      setCurrentPage('');
+      setCurrentPage(1);
+      setTotal(result.data.results.length);
+      console.log(result.data.results.length);
+      if (result.data.results.length === 0) {
+        alert('Nothing found!');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +62,7 @@ const ImageContextProvider = ({ children }) => {
     window.scrollTo(0, 0);
 
     if (total) {
-      console.log(total, totalPage);
+      console.log(total);
     }
   };
 
@@ -71,8 +79,8 @@ const ImageContextProvider = ({ children }) => {
         fetchImgCollection,
         getId,
         getCurrentPage,
-        totalPage,
         currentPage,
+        perPage,
       }}
     >
       {children}
