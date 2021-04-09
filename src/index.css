@@ -55,8 +55,10 @@ form input::placeholder {
 
 form .btn-success {
   display: block;
-  margin: 0 auto;
+  margin: auto;
   border-radius: 30px;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
 }
 
 .collections img {

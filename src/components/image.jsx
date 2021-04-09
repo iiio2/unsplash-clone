@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { ImageContext } from '../context/imageContext';
 import axios from 'axios';
 
-const Image = (props) => {
+const Image = () => {
   const [image, setImage] = useState('');
+
+  const { getId } = useContext(ImageContext);
 
   const { id } = useParams();
 
@@ -21,9 +24,11 @@ const Image = (props) => {
 
   useEffect(() => {
     fetchImg();
-    setImage('');
+    return () => {
+      setImage('');
+    };
     // eslint-disable-next-line
-  }, [props.match.params.id]);
+  }, []);
 
   if (!image) return <p>Loading...</p>;
 
@@ -31,7 +36,7 @@ const Image = (props) => {
     <div className='row mb-4 image'>
       <div className='col-sm-6'>
         <img
-          src={image.urls.full}
+          src={image.urls.full ? image.urls.full : <p>Loading...</p>}
           alt={image.alt_description}
           className='img-fluid'
         />
@@ -62,7 +67,11 @@ const Image = (props) => {
         <h4>Related Collections</h4>
         <div className='row collections'>
           {image.related_collections.results.map((img) => (
-            <div className='col-sm-3' key={img.id}>
+            <div
+              className='col-sm-3 mb-2'
+              key={img.id}
+              onClick={() => getId(img.id)}
+            >
               <Link to={`/collection/image/${img.id}`}>
                 <img
                   src={img.cover_photo.urls.thumb}

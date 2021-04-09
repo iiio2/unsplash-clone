@@ -1,23 +1,16 @@
-import { Fragment, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+import { Fragment, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react/cjs/react.development';
+import { ImageContext } from '../context/imageContext';
 
-const CollectionImage = () => {
-  const [images, setImages] = useState('');
-
-  const { collection_id } = useParams();
-
-  const fetchImg = async () => {
-    const result = await axios(
-      `https://api.unsplash.com/collections/${collection_id}/photos?client_id=LlMkaG7ZmU8Gzgu7FBurlpkY6aHQ1SMsHw8iG_iTI8M`
-    );
-
-    console.log(result.data);
-    setImages(result.data);
-  };
+const CollectionImage = (props) => {
+  const { images, setImages, fetchImgCollection } = useContext(ImageContext);
 
   useEffect(() => {
-    fetchImg();
+    fetchImgCollection();
+    return () => {
+      setImages('');
+    };
     // eslint-disable-next-line
   }, []);
 
@@ -31,6 +24,12 @@ const CollectionImage = () => {
           <div className='col-sm-4 mb-2' key={image.id}>
             <Link to={`/image/${image.id}`}>
               <img src={image.urls.thumb} alt='' className='img-fluid' />
+              <h5>
+                {image.alt_description
+                  ? image.alt_description
+                  : 'Title not found'}
+              </h5>
+              <i className='bi bi-heart-fill'>{image.likes}</i>
             </Link>
           </div>
         ))}

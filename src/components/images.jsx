@@ -10,7 +10,7 @@ const Images = ({ images }) => {
             <Link to={`/image/${img.id}`}>
               <img src={img.urls.thumb} className='img-fluid' alt='img' />
               <h6>{img.alt_description}</h6>
-              <p className='lead'>Likes: {img.likes}</p>
+              <i className='bi bi-heart-fill'>{img.likes}</i>
             </Link>
           </div>
         ))}
