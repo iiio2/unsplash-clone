@@ -10,7 +10,6 @@ const Index = () => {
       <form onSubmit={fetchImages}>
         <div className='form-group'>
           <input
-            autoFocus
             type='text'
             className='form-control'
             placeholder='Search'

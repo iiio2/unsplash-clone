@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import ImageContextProvider from './context/imageContext';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ImageContextProvider from './context/imageContext';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <ImageContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <App />
     </ImageContextProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Image = () => {
+const Image = (props) => {
   const [image, setImage] = useState('');
 
   const { id } = useParams();
@@ -22,7 +22,8 @@ const Image = () => {
   useEffect(() => {
     fetchImg();
     setImage('');
-  }, []);
+    // eslint-disable-next-line
+  }, [props.match.params.id]);
 
   if (!image) return <p>Loading...</p>;
 

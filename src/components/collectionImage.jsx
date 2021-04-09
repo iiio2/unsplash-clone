@@ -18,6 +18,7 @@ const CollectionImage = () => {
 
   useEffect(() => {
     fetchImg();
+    // eslint-disable-next-line
   }, []);
 
   if (!images) return <p>Loading...</p>;
