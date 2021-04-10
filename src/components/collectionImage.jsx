@@ -1,9 +1,6 @@
 import { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react/cjs/react.development';
-import { ImageContext } from '../context/imageContext';
 import axios from 'axios';
-import { API } from '../config/api';
 
 const CollectionImage = (props) => {
   const [images, setImages] = useState([]);
@@ -11,12 +8,12 @@ const CollectionImage = (props) => {
   const fetchImgCollection = async () => {
     try {
       const result = await axios(
-        `https://api.unsplash.com/collections/${props.match.params.collection_id}/photos?client_id=${API}`
+        `https://api.unsplash.com/collections/${props.match.params.collection_id}/photos?client_id=${process.env.REACT_APP_MOVIE_API}`
       );
       setImages(result.data);
     } catch (error) {
-      //alert('Error occured');
-      console.log(error);
+      alert('Some error occured');
+      return;
     }
   };
 
@@ -25,7 +22,7 @@ const CollectionImage = (props) => {
     return () => {
       setImages('');
     };
-    //eslint - disable - next - line;
+    // eslint-disable-next-line
   }, []);
 
   if (!images) return <p>Loading...</p>;

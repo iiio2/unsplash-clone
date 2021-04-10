@@ -8,7 +8,6 @@ const Images = ({ images }) => {
   const { currentPage, perPage } = useContext(ImageContext);
 
   const paginatedMovies = paginate(images, currentPage, perPage);
-  console.log(paginatedMovies);
 
   return (
     <div className='images'>
