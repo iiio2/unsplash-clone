@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import axios from 'axios';
 import { API } from '../config/api';
 export const ImageContext = createContext();
@@ -11,6 +11,7 @@ const ImageContextProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState('');
   const [perPage] = useState(6);
   const [total, setTotal] = useState(30);
+  const [anoId, setAnoId] = useState('');
 
   const fetchImages = async (e) => {
     e.preventDefault();
@@ -40,17 +41,19 @@ const ImageContextProvider = ({ children }) => {
     }
   };
 
-  const fetchImgCollection = async () => {
-    try {
-      const result = await axios(
-        `https://api.unsplash.com/collections/${id}/photos?client_id=${API}`
-      );
-      setImages(result.data);
-    } catch (error) {
-      alert('Error occured');
-      console.log(error);
-    }
-  };
+  // const fetchImgCollection = async () => {
+  //   try {
+  //     console.log(id);
+
+  //     const result = await axios(
+  //       `https://api.unsplash.com/collections/${id}/photos?client_id=${API}`
+  //     );
+  //     setImages(result.data);
+  //   } catch (error) {
+  //     //alert('Error occured');
+  //     console.log(error);
+  //   }
+  // };
 
   const getId = (collection_id) => {
     setId(collection_id);
@@ -76,11 +79,12 @@ const ImageContextProvider = ({ children }) => {
         setId,
         images,
         setImages,
-        fetchImgCollection,
+        //fetchImgCollection,
         getId,
         getCurrentPage,
         currentPage,
         perPage,
+        setAnoId,
       }}
     >
       {children}
